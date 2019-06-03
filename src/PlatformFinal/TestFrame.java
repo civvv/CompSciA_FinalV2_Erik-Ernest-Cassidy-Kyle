@@ -223,9 +223,22 @@ public class TestFrame extends javax.swing.JFrame {
         newTitle = NewTitle_TxtArea.getText();
         starring_lbl.setText("Starring: "+newTitle+"!");
         previousUser_Lbl.setText(newTitle);
-        
+        try {
+            create(newTitle);
+        } catch (IOException ex) {
+            Logger.getLogger(TestFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_update_BtnActionPerformed
-
+    
+    public void create(String s) throws FileNotFoundException, IOException {
+        FileWriter fileWriter = new FileWriter("src/users.txt");
+        fileWriter.write(s);
+        fileWriter.close();
+    }
+    public void read(){
+        System.out.println("src/users.txt");
+    }
+    
     private void NewTitle_TxtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTitle_TxtAreaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NewTitle_TxtAreaActionPerformed
