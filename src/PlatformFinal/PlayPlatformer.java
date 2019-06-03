@@ -3,6 +3,7 @@ package PlatformFinal;
 import java.awt.Color;
 import javax.swing.JFrame;
 import java.awt.Component;
+import java.io.File;
 
 public class PlayPlatformer extends JFrame {
 
@@ -13,7 +14,7 @@ public class PlayPlatformer extends JFrame {
         super("Erik Beer CompSciA Final - Super Blocko");
         setSize(WIDTH, HEIGHT);
 
-        Level game = new Level();
+        Levels game = new Levels();
 
         ((Component) game).setFocusable(true);
         getContentPane().add(game);

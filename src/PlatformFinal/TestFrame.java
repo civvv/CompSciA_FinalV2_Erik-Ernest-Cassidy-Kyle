@@ -3,17 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PlatformFinal;
 
+package PlatformFinal;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.*;  
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 /**
  *
  * @author beere1633
  */
 public class TestFrame extends javax.swing.JFrame {
-
     /**
      * Creates new form TestFrame
      */
+    private String fileContent;
     public TestFrame() {
         initComponents();
     }
@@ -103,7 +114,7 @@ public class TestFrame extends javax.swing.JFrame {
         instructControls_Lbl.setText("Use the WASD Keys!");
 
         author_Lbl.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        author_Lbl.setText("Made By: Erik Beer, P.2");
+        author_Lbl.setText("Made By: Erik Beer, P.1");
 
         instruct2_Lbl.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         instruct2_Lbl.setText("Avoid red blocks!");
@@ -139,25 +150,25 @@ public class TestFrame extends javax.swing.JFrame {
                                     .addComponent(previousUser_Lbl))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(update_Btn)
-                                            .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
                                                 .addComponent(Play_btn))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(23, 23, 23)
+                                                .addGap(10, 10, 10)
                                                 .addComponent(NewTitle_Lbl)))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(intructions_Lbl)
                                             .addComponent(instructControls_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(instruct2_Lbl)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(update_Btn)
+                                            .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addGap(0, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -170,23 +181,22 @@ public class TestFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(starring_lbl)
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Play_btn)
-                                .addGap(16, 16, 16)
-                                .addComponent(NewTitle_Lbl))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(intructions_Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(instructControls_Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(instruct2_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addGap(7, 7, 7)))
-                        .addGap(9, 9, 9)
-                        .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Play_btn)
+                                .addGap(18, 18, 18)
+                                .addComponent(NewTitle_Lbl)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
                         .addComponent(update_Btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(author_Lbl))
@@ -213,6 +223,7 @@ public class TestFrame extends javax.swing.JFrame {
         newTitle = NewTitle_TxtArea.getText();
         starring_lbl.setText("Starring: "+newTitle+"!");
         previousUser_Lbl.setText(newTitle);
+        
     }//GEN-LAST:event_update_BtnActionPerformed
 
     private void NewTitle_TxtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTitle_TxtAreaActionPerformed

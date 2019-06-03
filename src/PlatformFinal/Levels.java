@@ -10,8 +10,18 @@ import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.*;  
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
-public class Level extends Canvas implements KeyListener, Runnable {
+public class Levels extends Canvas implements KeyListener, Runnable {
 
     private Player user;
     private Enemy1 bob;
@@ -24,9 +34,9 @@ public class Level extends Canvas implements KeyListener, Runnable {
     private Enemy1 goal;
     private boolean[] keys;
     private BufferedImage back;
+    private FileWriter writer;
 
-
-    public Level() {
+    public Levels() {
         user = new Player(100, 100, 20, 25, Color.blue, 2);
         bob = new Enemy1(200,0,20,260, Color.red, 2, 1);
         bob2 = new Enemy1(280,300,20,260, Color.red, 2, 1);
@@ -42,7 +52,9 @@ public class Level extends Canvas implements KeyListener, Runnable {
         setVisible(true);
 
         new Thread(this).start();
-        addKeyListener(this);		
+        addKeyListener(this);
+
+        
     }
 
     public void update(Graphics window) {
@@ -56,7 +68,6 @@ public class Level extends Canvas implements KeyListener, Runnable {
         }
 
         Graphics graphToBack = back.createGraphics();
-
         graphToBack.setColor(Color.red);
 
         user.draw(graphToBack);
