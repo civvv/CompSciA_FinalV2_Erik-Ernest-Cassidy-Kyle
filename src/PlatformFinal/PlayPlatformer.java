@@ -1,17 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PlatformFinal;
 
-/**
- *
- * @author beere1633
- */
+import java.awt.Color;
 import javax.swing.JFrame;
 import java.awt.Component;
 
-public class PlayPlatformer {
-    
+public class PlayPlatformer extends JFrame {
+
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 600;
+
+    public PlayPlatformer() {
+        super("Erik Beer CompSciA Final - Super Blocko");
+        setSize(WIDTH, HEIGHT);
+
+        Level game = new Level();
+
+        ((Component) game).setFocusable(true);
+        getContentPane().add(game);
+
+        setVisible(true);
+    }
+
+    public static void main(String args[]) {
+        PlayPlatformer run = new PlayPlatformer();
+    }
 }

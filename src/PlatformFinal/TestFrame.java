@@ -35,7 +35,15 @@ public class TestFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         score_lst = new javax.swing.JList();
         Score_Lbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Play_btn = new javax.swing.JButton();
+        starring_lbl = new javax.swing.JLabel();
+        intructions_Lbl = new javax.swing.JLabel();
+        instructControls_Lbl = new javax.swing.JLabel();
+        author_Lbl = new javax.swing.JLabel();
+        instruct2_Lbl = new javax.swing.JLabel();
+        previous_Lbl = new javax.swing.JLabel();
+        previousUser_Lbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,32 +72,49 @@ public class TestFrame extends javax.swing.JFrame {
         NewTitle_Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         NewTitle_Lbl.setText("New User:");
 
-        NewTitle_TxtArea.setText("[Enter Name Here]");
         NewTitle_TxtArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewTitle_TxtAreaActionPerformed(evt);
             }
         });
 
-        score_lst.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "User - 00:00.00", "User - 00:00.00", "User - 00:00.00", "User - 00:00.00" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(score_lst);
 
-        Score_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Score_Lbl.setText("Recent Times:");
+        Score_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Score_Lbl.setText("All Users:");
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("PLAY");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Play_btn.setBackground(new java.awt.Color(255, 0, 0));
+        Play_btn.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        Play_btn.setForeground(new java.awt.Color(255, 255, 0));
+        Play_btn.setText("PLAY");
+        Play_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Play_btnActionPerformed(evt);
             }
         });
+
+        starring_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        starring_lbl.setText("Starring: You!");
+
+        intructions_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        intructions_Lbl.setText("Instructions:");
+
+        instructControls_Lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        instructControls_Lbl.setText("Use the WASD Keys!");
+
+        author_Lbl.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        author_Lbl.setText("Made By: Erik Beer, P.2");
+
+        instruct2_Lbl.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        instruct2_Lbl.setText("Avoid red blocks!");
+
+        previous_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        previous_Lbl.setText("Previous User:");
+
+        previousUser_Lbl.setText("No one!");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jLabel1.setText("Green is the goal!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,41 +123,83 @@ public class TestFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Score_Lbl)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NewTitle_Lbl)
-                            .addComponent(jButton1)
-                            .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(update_Btn)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(mainTitle_Lbl)))
-                .addGap(0, 85, Short.MAX_VALUE))
+                        .addComponent(mainTitle_Lbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(173, 173, 173)
+                                .addComponent(starring_lbl))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Score_Lbl)
+                                    .addComponent(previous_Lbl)
+                                    .addComponent(previousUser_Lbl))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(update_Btn)
+                                            .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(Play_btn))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(23, 23, 23)
+                                                .addComponent(NewTitle_Lbl)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(intructions_Lbl)
+                                            .addComponent(instructControls_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(instruct2_Lbl)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(mainTitle_Lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score_Lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(NewTitle_Lbl)
+                        .addContainerGap()
+                        .addComponent(mainTitle_Lbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(starring_lbl)
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Play_btn)
+                                .addGap(16, 16, 16)
+                                .addComponent(NewTitle_Lbl))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(intructions_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(instructControls_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(instruct2_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(7, 7, 7)))
+                        .addGap(9, 9, 9)
                         .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(update_Btn)
-                        .addGap(0, 33, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addGap(20, 20, 20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(author_Lbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(previous_Lbl)
+                        .addGap(4, 4, 4)
+                        .addComponent(previousUser_Lbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(Score_Lbl)
+                        .addGap(7, 7, 7)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         Score_Lbl.getAccessibleContext().setAccessibleName("");
@@ -144,16 +211,18 @@ public class TestFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String newTitle = "";
         newTitle = NewTitle_TxtArea.getText();
-        mainTitle_Lbl.setText(newTitle);
+        starring_lbl.setText("Starring: "+newTitle+"!");
+        previousUser_Lbl.setText(newTitle);
     }//GEN-LAST:event_update_BtnActionPerformed
 
     private void NewTitle_TxtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTitle_TxtAreaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NewTitle_TxtAreaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Play_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Play_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        new PlayPlatformer();
+    }//GEN-LAST:event_Play_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,12 +262,20 @@ public class TestFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NewTitle_Lbl;
     private javax.swing.JTextField NewTitle_TxtArea;
+    private javax.swing.JButton Play_btn;
     private javax.swing.JLabel Score_Lbl;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel author_Lbl;
+    private javax.swing.JLabel instruct2_Lbl;
+    private javax.swing.JLabel instructControls_Lbl;
+    private javax.swing.JLabel intructions_Lbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mainTitle_Lbl;
+    private javax.swing.JLabel previousUser_Lbl;
+    private javax.swing.JLabel previous_Lbl;
     private javax.swing.JList score_lst;
+    private javax.swing.JLabel starring_lbl;
     private javax.swing.JButton update_Btn;
     // End of variables declaration//GEN-END:variables
 }

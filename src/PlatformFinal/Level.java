@@ -1,154 +1,167 @@
 package PlatformFinal;
 
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point2D;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Canvas;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import static java.lang.Character.*;
+import java.awt.image.BufferedImage;
+import java.awt.event.ActionListener;
+
+public class Level extends Canvas implements KeyListener, Runnable {
+
+    private Player user;
+    private Enemy1 bob;
+    private Enemy1 bob2;
+    private Enemy1 bob3;
+    private Enemy1 bob4;
+    private Enemy1 bob5;
+    private Enemy1 bob6;
+    private Enemy1 bob7;
+    private Enemy1 goal;
+    private boolean[] keys;
+    private BufferedImage back;
 
 
-public class Level extends JFrame {
-//Searched up various examples of a simple platformer game changing and combinding code from different examples in order to make it function, as most of the code was outdated
-    private HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
-    private ArrayList<Node> platforms = new ArrayList<>();
-    private Pane appRoot = new Pane();
-    private Pane gameRoot = new Pane();
-    private Pane uiRoot = new Pane();
+    public Level() {
+        user = new Player(100, 100, 20, 25, Color.blue, 2);
+        bob = new Enemy1(200,0,20,260, Color.red, 2, 1);
+        bob2 = new Enemy1(280,300,20,260, Color.red, 2, 1);
+        bob3 = new Enemy1(200,150,200,20, Color.red, 2, 1);
+        bob4 = new Enemy1(380,70,20,380, Color.red, 2, 1);
+        bob5 = new Enemy1(440,300,100,20, Color.red, 2, 1);
+        bob6 = new Enemy1(580,0,20,600, Color.red, 2, 1);
+        bob7 = new Enemy1(270,50,200,20, Color.red, 2, 1);
+        goal = new Enemy1(310, 95, 30, 30, Color.green);
+        keys = new boolean[4];
 
-    private Node player;
-    private Point2D playerVelocity = new Point2D(0, 0);
-    private boolean canJump = true;
-    private int levelWidth;
-    private void initContent(){
-        Rectangle bg = new Rectangle(800, 600);
-        levelWidth = LevelData.Level1[0].length() * 60;
+        setBackground(Color.WHITE);
+        setVisible(true);
 
-        for (int i=0; i< LevelData.Level1.length; i++){
-            String line = LevelData.Level1[i];
-            for (int j=0; j <line.length();j++){
-                switch (line.charAt(j)){
-                    case '0':
-                        break;
-                    case '1':
-                        Node platform = createEntity(j*60, i *60, 60, 60, Color.GREEN);
-                        platforms.add(platform);
-                        break;
-                }
+        new Thread(this).start();
+        addKeyListener(this);		
+    }
+
+    public void update(Graphics window) {
+        paint(window);
+    }
+
+    public void paint(Graphics window) {
+        Graphics2D twoDGraph = (Graphics2D) window;
+        if (back == null) {
+            back = (BufferedImage) (createImage(getWidth(), getHeight()));
+        }
+
+        Graphics graphToBack = back.createGraphics();
+
+        graphToBack.setColor(Color.red);
+
+        user.draw(graphToBack);
+        bob.draw(graphToBack);
+        bob2.draw(graphToBack);
+        bob3.draw(graphToBack);
+        bob4.draw(graphToBack);
+        bob5.draw(graphToBack);
+        bob6.draw(graphToBack);
+        bob7.draw(graphToBack);
+        goal.draw(graphToBack);
+
+
+        if (bob.didCollideLeft(user) && (bob.didCollideRight(user))&&(user.getyPos()<260)){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (bob2.didCollideLeft(user) && (bob2.didCollideRight(user))&&(user.getyPos()>275)){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (bob3.didCollideTop(user) && (bob3.didCollideBottom(user))&&(user.getxPos()<360)&&(user.getxPos()>200)){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (bob4.didCollideLeft(user) && (bob4.didCollideRight(user))&&(user.getyPos()>70)&&(user.getyPos()<450)){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (bob5.didCollideTop(user) && (bob5.didCollideBottom(user))&&(user.getxPos()<540)&&(user.getxPos()>440)){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (bob6.didCollideLeft(user) && (bob6.didCollideRight(user))){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (bob7.didCollideTop(user) && (bob7.didCollideBottom(user))&&(user.getxPos()<470)&&(user.getxPos()>270)){
+            user.setxPos(100);
+            user.setyPos(100);
+        }
+        if (goal.didCollideLeft(user) && (goal.didCollideRight(user))&&(user.getyPos()<130)&&(user.getyPos()>90)){
+            user.setColor(Color.cyan);
+        }
+        
+        if (keys[0] == true) {
+            user.moveUpAndDraw(graphToBack);
+        }
+        if (keys[1] == true) {
+            user.moveDownAndDraw(graphToBack);
+        }
+        if (keys[2] == true) {
+            user.moveLeftAndDraw(graphToBack);
+        }
+        if (keys[3] == true) {
+            user.moveRightAndDraw(graphToBack);
+        }
+  
+        twoDGraph.drawImage(back, null, 0, 0);
+    }
+
+    public void keyPressed(KeyEvent e) {
+        switch (toUpperCase(e.getKeyChar())) {
+            case 'W':
+                keys[0] = true;
+                break;
+            case 'S':
+                keys[1] = true;
+                break;
+            case 'A':
+                keys[2] = true;
+                break;
+            case 'D':
+                keys[3] = true;
+                break;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        switch (toUpperCase(e.getKeyChar())) {
+            case 'W':
+                keys[0] = false;
+                break;
+            case 'S':
+                keys[1] = false;
+                break;
+            case 'A':
+                keys[2] = false;
+                break;
+            case 'D':
+                keys[3] = false;
+                break;
+        }
+    }
+
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void run() {
+        try {
+            while (true) {
+                Thread.currentThread().sleep(8);
+                repaint();
             }
+        } catch (Exception e) {
         }
-        player = createEntity(0, 600, 40, 40, Color.BLUE);
-        player.translateXProperty().addListener((obs, old, newValue) -> {
-            int offset = newValue.intValue();
-            if (offset > 640 && offset < levelWidth-640){
-                gameRoot.setLayoutX(-(offset-640));
-            }
-        });
-        appRoot.getChildren().addAll(bg, gameRoot, uiRoot);
-    }
-    private void update(){
-        if (isPressed(KeyCode.W) && player.getTranslateY() >= 5){
-            jumpPlayer();
-        }
-        if (isPressed(KeyCode.A) && player.getTranslateX() >=5){
-            movePlayerX(-5);
-        }
-        if (isPressed(KeyCode.D) && player.getTranslateX() + 40 <=levelWidth-5){
-            movePlayerX(5);
-        }
-        if (playerVelocity.getY() < 10){
-            playerVelocity = playerVelocity.add(0, 1);
-        }
-        movePlayerY((int)playerVelocity.getY());
-        }
-
-
-    private void movePlayerX(int value){
-    boolean movingRight = value > 0;
-    for (int i=0; i < Math.abs(value);i++){
-        for (Node platform : platforms){
-            if(player.getBoundsInParent().intersects(platform.getBoundsInParent())){
-                if(movingRight){
-                    if (player.getTranslateX() + 40 == platform.getTranslateX()){
-                        return;
-                    }
-                }else {
-                    if (player.getTranslateX() == platform.getTranslateX() + 60) {
-                        return;
-                    }
-                }
-            }
-        }
-        player.setTranslateX(player.getTranslateX() + (movingRight ? 1 : -1));
-        }
-    }
-    private void movePlayerY(int value){
-        boolean movingDown = value > 0;
-        for (int i=0; i < Math.abs(value);i++){
-            for (Node platform : platforms){
-                if(player.getBoundsInParent().intersects(platform.getBoundsInParent())){
-                    if(movingDown){
-                        if (player.getTranslateY() + 40 == platform.getTranslateY()){
-                            canJump = true;
-                            return;
-                        }
-                    }else {
-                        if (player.getTranslateY() == platform.getTranslateY() + 60) {
-                            return;
-                        }
-                    }
-                }
-            }
-            player.setTranslateY(player.getTranslateY() + (movingDown ? 1 : -1));
-        }
-    }
-    private void jumpPlayer(){
-    if(canJump){
-        playerVelocity = playerVelocity.add(0, -30);
-        canJump = false;
-        }
-    }
-    private Node createEntity(int x, int y, int w, int h, Color color){
-        Rectangle entity = new Rectangle(w, h);
-        entity.setTranslateX(x);
-        entity.setTranslateY(y);
-        entity.setFill(color);
-        gameRoot.getChildren().add(entity);
-        return entity;
-
-    }
-    private boolean isPressed(KeyCode key){
-    return keys.getOrDefault(key, false);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        initContent();
-        Scene scene = new Scene(appRoot);
-        scene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
-        scene.setOnKeyReleased(event -> keys.put(event.getCode(), false));
-        primaryStage.setTitle("Sample game");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                update();
-            }
-        };
-        timer.start();
-    }
-    public static void main(String[] args) {
-
-        launch(args);
     }
 }

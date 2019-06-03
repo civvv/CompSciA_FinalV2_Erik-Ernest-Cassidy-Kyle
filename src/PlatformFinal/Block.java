@@ -100,31 +100,6 @@ public class Block implements Locatable {
         window.fillRect(getxPos(), getyPos(), getWidth(), getHeight());
     }
 
-    public boolean equals(Object obj) {
-
-        Block test = (Block) obj;
-        if (this.getColor() != null && test.getColor() != null) {
-            if (this.getxPos() == test.getxPos() && this.getyPos() == test.getyPos()
-                    && this.getWidth() == test.getWidth() && this.getHeight() == test.getHeight()
-                    && this.getColor().equals(test.getColor())) {
-
-                return true;
-
-            }
-
-        } else {
-            if (this.getxPos() == test.getxPos() && this.getyPos() == test.getyPos()
-                    && this.getWidth() == test.getWidth() && this.getHeight() == test.getHeight()) {
-
-                return true;
-
-            }
-        }
-
-        return false;
-    }
-
-    //add a toString() method  - x , y , width, height, color
     public String toString() {
         return getxPos() + " " + getyPos() + " " + getWidth() + " " + getHeight() + " " + getColor();
     }
