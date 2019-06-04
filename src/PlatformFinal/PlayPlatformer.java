@@ -6,10 +6,10 @@ import java.awt.Component;
 import java.io.File;
 
 public class PlayPlatformer extends JFrame {
-
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
-
+    //Frame from Pong program, however modifications made.
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 550;
+    
     public PlayPlatformer() {
         super("Erik Beer CompSciA Final - Super Blocko");
         setSize(WIDTH, HEIGHT);

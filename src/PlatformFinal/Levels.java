@@ -60,7 +60,7 @@ public class Levels extends Canvas implements KeyListener, Runnable {
     public void update(Graphics window) {
         paint(window);
     }
-
+    //Paint method from Pong as there isn't any easy way to write a different method for this.
     public void paint(Graphics window) {
         Graphics2D twoDGraph = (Graphics2D) window;
         if (back == null) {
@@ -80,7 +80,7 @@ public class Levels extends Canvas implements KeyListener, Runnable {
         bob7.draw(graphToBack);
         goal.draw(graphToBack);
 
-
+        //Collision detection: Some problems with up and down, however functional
         if (bob.didCollideLeft(user) && (bob.didCollideRight(user))&&(user.getyPos()<260)){
             user.setxPos(100);
             user.setyPos(100);

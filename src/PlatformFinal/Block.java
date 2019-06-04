@@ -14,6 +14,8 @@ package PlatformFinal;
 import java.awt.Color;
 import java.awt.Graphics;
 
+
+
 public class Block implements Locatable {
     private int xPos;
     private int yPos;
@@ -77,6 +79,26 @@ public class Block implements Locatable {
         window.setColor(color);
         window.fillRect(getxPos(), getyPos(), getWidth(), getHeight());
     }
+/* Not functional yet
+    public void setEnemyPos(){
+        this.xPos= 50;
+        this.yPos= 50;
+    }
+    public void setPlayerPos(){
+        this.xPos = 100;
+        this.yPos = 100;
+    }
+  public void setPowerUpEffectiveness(){
+        
+    }
+    public void currentPlayerSpeed(){
+        
+    }
+    public void currentEnemySpeed(){
+        
+    }*/
+    
+   
 
     public void draw(Graphics window, Color col) {
         window.setColor(col);
