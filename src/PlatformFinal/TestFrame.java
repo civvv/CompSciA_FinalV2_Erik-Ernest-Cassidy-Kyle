@@ -24,7 +24,6 @@ public class TestFrame extends javax.swing.JFrame {
     /**
      * Creates new form TestFrame
      */
-    private String fileContent;
     public TestFrame() {
         initComponents();
     }
@@ -43,9 +42,6 @@ public class TestFrame extends javax.swing.JFrame {
         update_Btn = new javax.swing.JButton();
         NewTitle_Lbl = new javax.swing.JLabel();
         NewTitle_TxtArea = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        score_lst = new javax.swing.JList();
-        Score_Lbl = new javax.swing.JLabel();
         Play_btn = new javax.swing.JButton();
         starring_lbl = new javax.swing.JLabel();
         intructions_Lbl = new javax.swing.JLabel();
@@ -55,6 +51,7 @@ public class TestFrame extends javax.swing.JFrame {
         previous_Lbl = new javax.swing.JLabel();
         previousUser_Lbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        getPrevious_btn = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,11 +86,6 @@ public class TestFrame extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(score_lst);
-
-        Score_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Score_Lbl.setText("All Users:");
-
         Play_btn.setBackground(new java.awt.Color(255, 0, 0));
         Play_btn.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         Play_btn.setForeground(new java.awt.Color(255, 255, 0));
@@ -122,10 +114,18 @@ public class TestFrame extends javax.swing.JFrame {
         previous_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         previous_Lbl.setText("Previous User:");
 
-        previousUser_Lbl.setText("No one!");
+        previousUser_Lbl.setText("???");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jLabel1.setText("Green is the goal!");
+
+        getPrevious_btn.setText("Get Previous User");
+        getPrevious_btn.setToolTipText("");
+        getPrevious_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getPrevious_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,32 +144,23 @@ public class TestFrame extends javax.swing.JFrame {
                                 .addComponent(starring_lbl))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Score_Lbl)
                                     .addComponent(previous_Lbl)
-                                    .addComponent(previousUser_Lbl))
+                                    .addComponent(previousUser_Lbl)
+                                    .addComponent(getPrevious_btn))
+                                .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(Play_btn))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(NewTitle_Lbl)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(intructions_Lbl)
-                                            .addComponent(instructControls_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(instruct2_Lbl)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(update_Btn)
-                                            .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addGap(0, 24, Short.MAX_VALUE))
+                                    .addComponent(NewTitle_Lbl)
+                                    .addComponent(Play_btn)
+                                    .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(update_Btn)
+                                    .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(instructControls_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(intructions_Lbl)
+                                    .addComponent(instruct2_Lbl)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,35 +175,31 @@ public class TestFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(intructions_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(instructControls_Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(instructControls_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(instruct2_Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Play_btn)
                                 .addGap(18, 18, 18)
-                                .addComponent(NewTitle_Lbl)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(update_Btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(author_Lbl))
+                                .addComponent(NewTitle_Lbl))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
+                        .addGap(112, 112, 112)
                         .addComponent(previous_Lbl)
-                        .addGap(4, 4, 4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(previousUser_Lbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(Score_Lbl)
-                        .addGap(7, 7, 7)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(getPrevious_btn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(update_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(author_Lbl)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
-
-        Score_Lbl.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -222,7 +209,6 @@ public class TestFrame extends javax.swing.JFrame {
         String newTitle = "";
         newTitle = NewTitle_TxtArea.getText();
         starring_lbl.setText("Starring: "+newTitle+"!");
-        previousUser_Lbl.setText(newTitle);
         try {
             create(newTitle);
         } catch (IOException ex) {
@@ -236,7 +222,23 @@ public class TestFrame extends javax.swing.JFrame {
         fileWriter.close();
     }
     public void read(){
-        System.out.println("src/users.txt");
+        try{
+            
+        FileInputStream readTxt = new FileInputStream("src/users.txt");
+        DataInputStream ing = new DataInputStream(readTxt);
+        BufferedReader br = new BufferedReader(new InputStreamReader(ing));
+        String recentUse;
+        while ((recentUse = br.readLine())!= null){
+            System.out.println(recentUse);
+            previousUser_Lbl.setText(recentUse);
+        }
+        ing.close();
+    }catch (Exception e){
+    System.err.println("Error: " + e.getMessage());
+    }
+        
+        
+        
     }
     
     private void NewTitle_TxtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTitle_TxtAreaActionPerformed
@@ -247,6 +249,11 @@ public class TestFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new PlayPlatformer();
     }//GEN-LAST:event_Play_btnActionPerformed
+
+    private void getPrevious_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPrevious_btnActionPerformed
+        // TODO add your handling code here:
+        read();
+    }//GEN-LAST:event_getPrevious_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,18 +294,16 @@ public class TestFrame extends javax.swing.JFrame {
     private javax.swing.JLabel NewTitle_Lbl;
     private javax.swing.JTextField NewTitle_TxtArea;
     private javax.swing.JButton Play_btn;
-    private javax.swing.JLabel Score_Lbl;
     private javax.swing.JLabel author_Lbl;
+    private javax.swing.JButton getPrevious_btn;
     private javax.swing.JLabel instruct2_Lbl;
     private javax.swing.JLabel instructControls_Lbl;
     private javax.swing.JLabel intructions_Lbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mainTitle_Lbl;
     private javax.swing.JLabel previousUser_Lbl;
     private javax.swing.JLabel previous_Lbl;
-    private javax.swing.JList score_lst;
     private javax.swing.JLabel starring_lbl;
     private javax.swing.JButton update_Btn;
     // End of variables declaration//GEN-END:variables
