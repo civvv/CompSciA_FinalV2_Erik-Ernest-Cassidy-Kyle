@@ -68,7 +68,6 @@
                                   <Component id="Play_btn" min="-2" max="-2" attributes="0"/>
                                   <Component id="NewTitle_TxtArea" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                   <Component id="update_Btn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="author_Lbl" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -77,6 +76,10 @@
                                   <Component id="instruct2_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="author_Lbl" min="-2" pref="412" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -208,7 +211,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Made By: Erik Beer, P.1"/>
+        <Property name="text" type="java.lang.String" value="Made By: Erik Beer, Ernest Lin, Cassidy Liu, &amp; Kyle Lu - P.1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="instruct2_Lbl">
@@ -216,7 +219,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Avoid red blocks!"/>
+        <Property name="text" type="java.lang.String" value="Avoid red &amp; black!"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="previous_Lbl">

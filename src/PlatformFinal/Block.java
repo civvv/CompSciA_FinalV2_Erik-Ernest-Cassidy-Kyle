@@ -97,7 +97,24 @@ public class Block implements Locatable {
     public void currentEnemySpeed(){
         
     }*/
-    
+    public boolean isCollide(Block b)
+	{
+		if (partialCollision(this.getxPos(), this.getyPos() + this.getHeight() / 2, b))
+			return true;
+		else if (partialCollision(this.getxPos() + this.getWidth(), this.getyPos() + this.getHeight() / 2, b))
+			return true;
+		else if (partialCollision(this.getxPos() + this.getWidth() / 2, this.getyPos(), b))
+			return true;
+		else if (partialCollision(this.getxPos() + this.getWidth() / 2, this.getyPos() + this.getHeight(), b))
+			return true;
+		return false;
+	}
+	
+    private boolean partialCollision(int pointX, int pointY, Block b) 
+    {
+            return pointX > b.getxPos() && pointX < b.getxPos() + b.getWidth() && pointY > b.getyPos()
+                            && pointY < b.getyPos() + b.getHeight();
+    }
    
 
     public void draw(Graphics window, Color col) {

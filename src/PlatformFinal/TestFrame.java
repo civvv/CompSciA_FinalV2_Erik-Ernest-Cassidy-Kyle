@@ -106,10 +106,10 @@ public class TestFrame extends javax.swing.JFrame {
         instructControls_Lbl.setText("Use the WASD Keys!");
 
         author_Lbl.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        author_Lbl.setText("Made By: Erik Beer, P.1");
+        author_Lbl.setText("Made By: Erik Beer, Ernest Lin, Cassidy Liu, & Kyle Lu - P.1");
 
         instruct2_Lbl.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
-        instruct2_Lbl.setText("Avoid red blocks!");
+        instruct2_Lbl.setText("Avoid red & black!");
 
         previous_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         previous_Lbl.setText("Previous User:");
@@ -152,14 +152,16 @@ public class TestFrame extends javax.swing.JFrame {
                                     .addComponent(NewTitle_Lbl)
                                     .addComponent(Play_btn)
                                     .addComponent(NewTitle_TxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(update_Btn)
-                                    .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(update_Btn))
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(instructControls_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(intructions_Lbl)
                                     .addComponent(instruct2_Lbl)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(author_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)))))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
