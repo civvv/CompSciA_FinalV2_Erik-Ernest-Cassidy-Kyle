@@ -25,7 +25,7 @@ public class Player extends Block {
     public void setSpeed(int s) {
         speed = s;
     }
-    
+    /* Erik's Old Collsion detector 
     public int getX() {
         int xVal = super.getxPos();
         if (xVal%10==1){
@@ -88,7 +88,7 @@ public class Player extends Block {
         }
         return yVal;
     }
-
+*/
     public void moveUpAndDraw(Graphics window) {
         draw(window, Color.white);
 

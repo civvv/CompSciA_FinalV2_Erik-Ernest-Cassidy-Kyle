@@ -42,8 +42,13 @@ public class Levels extends Canvas implements KeyListener, Runnable {
     private Enemy1 enemy4;
     private Enemy1 enemy5;
     private Enemy1 enemy6;
+    private Enemy1 leftwall;
+    private Enemy1 topwall;
+    private Enemy1 bottomwall;
     private ArrayList<Enemy1> enemList;
     private JFrame j;
+    private int score = 0;
+    private Powerup speedpower;
     public Levels(JFrame j ) {
         this.j = j;
         user = new Player(100, 100, 20, 20, Color.blue, 2);
@@ -60,9 +65,17 @@ public class Levels extends Canvas implements KeyListener, Runnable {
         enemList.add(bob5);
         bob6 = new Enemy1(580,0,20,600, Color.red);
         enemList.add(bob6);
-        bob7 = new Enemy1(270,50,200,20, Color.red);
+        bob7 = new Enemy1(270,55,200,20, Color.red);
         enemList.add(bob7);
         goal = new Enemy1(310, 95, 30, 30, Color.green);
+        leftwall = new Enemy1(0,0,20,700, Color.red);
+        topwall = new Enemy1(0,0,600,20, Color.red);
+        bottomwall = new Enemy1(0,492,600,20, Color.red);
+        enemList.add(leftwall);
+        enemList.add(topwall);
+        enemList.add(bottomwall);
+        
+        speedpower = new Powerup(100, 400, 15, 15, Color.MAGENTA);
         
         keys = new boolean[4];
         
@@ -110,6 +123,10 @@ public class Levels extends Canvas implements KeyListener, Runnable {
         bob6.draw(graphToBack);
         bob7.draw(graphToBack);
         goal.draw(graphToBack);
+        leftwall.draw(graphToBack);
+        topwall.draw(graphToBack);
+        bottomwall.draw(graphToBack);
+        speedpower.draw(graphToBack);
         
        
         
@@ -136,14 +153,28 @@ public class Levels extends Canvas implements KeyListener, Runnable {
                 user.draw(graphToBack, Color.WHITE);
                 user.setxPos(100);
                 user.setyPos(100);
+                user.setSpeed(2);
+                user.setColor(Color.BLUE);
+                speedpower.setColor(Color.magenta);
                 user.draw(graphToBack, Color.BLUE);
+                score++;
             }
+        }
+        if (user.isCollide(speedpower)){
+            user.setSpeed(3);
+            user.setColor(Color.CYAN);
+            speedpower.setColor(Color.white);
         }
 
         //Collision detection: Some problems with up and down, however functional
         
         if (goal.didCollideLeft(user) && (goal.didCollideRight(user))&&(user.getyPos()<130)&&(user.getyPos()>90)){
             user.setColor(Color.cyan);
+            try {
+                scorer(score);
+            } catch (IOException ex) {
+                Logger.getLogger(Levels.class.getName()).log(Level.SEVERE, null, ex);
+            }
             new Level2Runner();
             j.dispose();
         }
@@ -163,7 +194,14 @@ public class Levels extends Canvas implements KeyListener, Runnable {
   
         twoDGraph.drawImage(back, null, 0, 0);
     }
-
+    public void scorer(int a) throws IOException{
+        System.out.println("User " + PlayPlatformer.getName1() + " failed " + a + " times in level 1.");
+        BufferedWriter out;
+        out = new BufferedWriter(new FileWriter("Scores.txt", true));
+        out.append("User " + PlayPlatformer.getName1() + " failed " + a + " times in level 1.");
+        out.newLine();
+        out.close();
+    }
     public void keyPressed(KeyEvent e) {
         switch (toUpperCase(e.getKeyChar())) {
             case 'W':

@@ -18,19 +18,19 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-public class Level2Runner extends JFrame
+public class Level3Runner extends JFrame
 {
-	private static final int WIDTH = 750;
+	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 
-	public Level2Runner()
+	public Level3Runner()
 	{
-		super("Erik, Ernest, Cassidy, & Kyle || CompSciA Final - Super Blocko Lv2");
+		super("Erik, Ernest, Cassidy, & Kyle || CompSciA Final - Super Blocko Lv3");
 		setSize(WIDTH,HEIGHT);
 
-		Level2 l2 = new Level2();
-                ((Component) l2).setFocusable(true);
-                getContentPane().add(l2);
+		Level3 l3 = new Level3();
+                ((Component) l3).setFocusable(true);
+                getContentPane().add(l3);
                 setVisible(true);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
